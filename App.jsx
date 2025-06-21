@@ -5,11 +5,15 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="max-w-[20rem] mx-auto bg-[#1A1B21]">
+    <div className="max-w-[20rem] mx-auto bg-[#1A1B21] rounded-xl shadow-lg">
       <Info />
-      <About />
-      <Interests />
+      <div className="px-9 py-7">
+        <About />
+        <Interests />
+      </div>
       <Footer />
+      {/*
+    <Footer />  */}
     </div>
   );
 }
