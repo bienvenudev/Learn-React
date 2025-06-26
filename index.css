@@ -1,0 +1,26 @@
+body {
+  font-family: Inter;
+}
+
+#root {
+  max-width: 550px;
+  margin-inline: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* header {
+    background-color: #F55A5A;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .4rem;
+    margin-bottom: 45px;
+    min-height: 55px;
+} */
+
+/* header h1 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: Inter;
+} */
