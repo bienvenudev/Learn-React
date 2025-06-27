@@ -6,7 +6,7 @@ export default function Info() {
     <div className="text-center mt-4 rounded-xl">
       <img
         className="rounded-t-xl"
-        src="../images/bienvenu.jpg"
+        src="/images/bienvenu.jpg"
         alt="Bienvenu's Portrait"
         width={320}
       />
