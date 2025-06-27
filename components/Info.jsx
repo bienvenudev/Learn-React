@@ -6,11 +6,11 @@ export default function Info() {
     <div className="text-center mt-4 rounded-xl">
       <img
         className="rounded-t-xl"
-        src="/images/bienvenu.jpg"
+        src="/images/bienvenu.png"
         alt="Bienvenu's Portrait"
         width={320}
       />
-      <h1 className="text-xl font-bold mt-5">Bienvenu Cyuzuzo</h1>
+      <h1 className="text-xl font-bold mt-5">Bienvenu</h1>
       <p className="text-sm text-[#F3BF99]">Frontend Developer</p>
       <a
         className="text-[.7rem]"
