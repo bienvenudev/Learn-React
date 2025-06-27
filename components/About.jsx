@@ -3,9 +3,10 @@ export default function About() {
     <>
       <h2 className="font-bold mb-1">About</h2>
       <p className="font-normal text-[.8em] text-[#DCDCDC]">
-        I am a frontend developer with a particular interest in making things
-        simple and automating daily tasks. I try to keep up with security and
-        best practices, and am always looking for new things to learn.
+        I am a front-end developer, passionate about creating accessible digital
+        experiences. Currently focused on learning and applying accessibility
+        best practices, I am eager to contribute to a team prioritizing
+        user-friendly and accessible design.
       </p>
     </>
   );
