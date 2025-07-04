@@ -25,16 +25,13 @@ export default function Main() {
         ["all the main spices", "pasta", "ground beef", "tomato paste"]
     )
     const [recipeShown, setRecipeShown] = React.useState(false)
-    const [incomingRecipe, setRecipe] = React.useState([])
-
-    function toggleRecipeShown(allIngredients) {
-        setRecipe(async (prev) => {
-        const recipe = await getRecipeFromMistral(allIngredients)
-        console.log('recipe', recipe)
-        setRecipeShown(prevShown => !prevShown)
-        return recipe;
-        })
-    }
+    const [incomingRecipe, setRecipe] = React.useState("")
+    
+    async function fetchRecipe(ingredients) {
+       setRecipeShown(prevShown => !prevShown)
+       const recipe = await getRecipeFromMistral(ingredients)
+       setRecipe(recipe)  
+      }
 
     function addIngredient(formData) {
         const newIngredient = formData.get("ingredient")
@@ -56,7 +53,7 @@ export default function Main() {
             {ingredients.length > 0 &&
                 <IngredientsList
                     ingredients={ingredients}
-                    toggleRecipeShown={toggleRecipeShown}
+                    toggleRecipeShown={fetchRecipe}
                 />
             }
 
