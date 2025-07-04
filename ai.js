@@ -36,7 +36,6 @@ export async function getRecipeFromChefClaude(ingredientsArr) {
       },
     ],
   });
-  console.log(msg.content[0].text);
   return msg.content[0].text;
 }
 
@@ -99,7 +98,6 @@ export async function getRecipeFromPPQ(ingredientsArr) {
     const json = await response.json();
 
     const reply = json.choices?.[0]?.message?.content;
-    console.log(reply);
     return reply;
   } catch (error) {
     console.error("Failed to fetch recipe from PPQ:", error);
