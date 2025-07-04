@@ -1,11 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { InferenceClient } from "@huggingface/inference";
 
-// const SYSTEM_PROMPT = `
-// You are an assistant that receives a list of ingredients that a user has and suggests a recipe they could make with some or all of those ingredients. You don't need to use every ingredient they mention in your recipe. The recipe can include additional ingredients they didn't mention, but try not to include too many extra ingredients. Format your response in markdown to make it easier to render to a web page
-// `
 const SYSTEM_PROMPT = `
-You are an assistant that answers very concisely in 3 sentences
+You are an assistant that receives a list of ingredients that a user has and suggests a recipe they could make with some or all of those ingredients. You don't need to use every ingredient they mention in your recipe. The recipe can include additional ingredients they didn't mention, but try not to include too many extra ingredients. Format your response in markdown to make it easier to render to a web page
 `;
 
 // 🚨👉 ALERT: Read message below! You've been warned! 👈🚨
@@ -20,7 +17,6 @@ You are an assistant that answers very concisely in 3 sentences
 // API keys private.
 
 const anthropic = new Anthropic({
-  // Make sure you set an environment variable in Scrimba
   // for ANTHROPIC_API_KEY
   apiKey: "process.env.ANTHROPIC_API_KEY",
   dangerouslyAllowBrowser: true,
@@ -44,9 +40,8 @@ export async function getRecipeFromChefClaude(ingredientsArr) {
   return msg.content[0].text;
 }
 
-// Make sure you set an environment variable in Scrimba
 // for HF_ACCESS_TOKEN
-const hf = new InferenceClient("process.env.HF_ACCESS_TOKEN");
+const hf = new InferenceClient(import.meta.env.VITE_HF_ACCESS_TOKEN);
 
 export async function getRecipeFromMistral(ingredientsArr) {
   const ingredientsString = ingredientsArr.join(", ");
@@ -58,7 +53,7 @@ export async function getRecipeFromMistral(ingredientsArr) {
         { role: "system", content: SYSTEM_PROMPT },
         {
           role: "user",
-          content: `I have ${ingredientsString}. tell me 2 things`,
+          content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!`,
         },
       ],
       max_tokens: 1024,
@@ -70,7 +65,6 @@ export async function getRecipeFromMistral(ingredientsArr) {
   }
 }
 
-// Make sure you set an environment variable in Scrimba
 // for PPQ_ACCESS_TOKEN
 const apiKey = "sk-_lx...O0g";
 const url = "https://api.ppq.ai/chat/completions";
