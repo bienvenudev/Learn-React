@@ -24,13 +24,11 @@ export default function Main() {
     const [ingredients, setIngredients] = React.useState(
         ["all the main spices", "pasta", "ground beef", "tomato paste"]
     )
-    const [recipeShown, setRecipeShown] = React.useState(false)
-    const [incomingRecipe, setRecipe] = React.useState("")
+    const [recipe, setRecipe] = React.useState("")
     
-    async function fetchRecipe(ingredients) {
-       setRecipeShown(prevShown => !prevShown)
-       const recipe = await getRecipeFromMistral(ingredients)
-       setRecipe(recipe)  
+    async function fetchRecipe() {
+      const recipeMarkdown = await getRecipeFromMistral(ingredients)
+       setRecipe(recipeMarkdown)  
       }
 
     function addIngredient(formData) {
@@ -53,11 +51,11 @@ export default function Main() {
             {ingredients.length > 0 &&
                 <IngredientsList
                     ingredients={ingredients}
-                    toggleRecipeShown={fetchRecipe}
+                    fetchRecipe={fetchRecipe}
                 />
             }
 
-            {recipeShown && <ClaudeRecipe recipe={incomingRecipe}/>}
+            {recipe && <ClaudeRecipe recipe={recipe}/>}
         </main>
     )
 }
