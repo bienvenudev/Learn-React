@@ -7,26 +7,30 @@ import {
   getRecipeFromPPQ,
 } from "./ai";
 
-/**
- * Challenge: Get a recipe from the AI!
- *
- * This will be a bit harder of a challenge that will require you
- * to think critically and synthesize the skills you've been
- * learning and practicing up to this point.
- *
- * Using either the `getRecipeFromChefClaude` function or the
- * `getRecipeFromMistral` function, make it so that when the user
- * clicks "Get a recipe", the text response from the AI is displayed
- * in the <ClaudeRecipe> component.
- *
- * For now, just have it render the raw markdown that the AI returns,
- * don't worry about making it look nice yet. (We're going to use a
- * package that will render the markdown for us soon.)
- */
-
 export default function Main() {
-  const [ingredients, setIngredients] = React.useState([]);
+  const [ingredients, setIngredients] = React.useState([
+    "chicken",
+    "all the main spices",
+    "corn",
+    "heavy cream",
+    "pasta",
+  ]);
   const [recipe, setRecipe] = React.useState("");
+  /**
+   * Challenge:
+   * Add a new effect that calls `recipeSection.current.scrollIntoView()`
+   * only if recipe is not an empty string and recipeSection.current is not null.
+   * Think carefully about what value(s) you would want to include in
+   * the dependencies array.
+   */
+  const recipeSection = React.useRef(null);
+
+  React.useEffect(() => {
+    if (recipe !== "" && recipeSection.current !== null) {
+      recipeSection.current.scrollIntoView({ behavior: "smooth" });
+      console.log("recipeSection scrolled into view!");
+    }
+  }, [recipe]);
 
   async function fetchRecipe() {
     const recipeMarkdown = await getRecipeFromMistral(ingredients);
@@ -51,7 +55,11 @@ export default function Main() {
       </form>
 
       {ingredients.length > 0 && (
-        <IngredientsList ingredients={ingredients} fetchRecipe={fetchRecipe} />
+        <IngredientsList
+          ref={recipeSection}
+          ingredients={ingredients}
+          fetchRecipe={fetchRecipe}
+        />
       )}
 
       {recipe && <ClaudeRecipe recipe={recipe} />}
